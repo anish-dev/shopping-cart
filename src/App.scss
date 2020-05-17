@@ -1,0 +1,21 @@
+@import "~antd/dist/antd.css";
+
+.ant-slider-rail {
+  background-color: #d4d5de !important;
+}
+
+.add-to-cart-btn {
+  .ant-btn:hover,
+  .ant-btn:focus {
+    color: black !important;
+    background-color: #fff;
+    border-color: #edb046 !important;
+    border-color: #edb046 !important;
+  }
+}
+
+.sorter-focus {
+  border-bottom: 2px solid #1890ff;
+  padding-bottom: 4px;
+  color: #1890ff;
+}
