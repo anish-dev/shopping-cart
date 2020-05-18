@@ -7,7 +7,7 @@ class SideFilter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      valueRange: [1000, 100000]
+      valueRange: this.props.range
     };
   }
   handleChange = value => {

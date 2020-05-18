@@ -19,3 +19,16 @@
   padding-bottom: 4px;
   color: #1890ff;
 }
+
+.search-input {
+  input {
+    height: 29px;
+    border: none;
+    background: transparent;
+    border-bottom: 1px solid #fff;
+    color: #ffff;
+  }
+  input:focus {
+    outline: none;
+  }
+}

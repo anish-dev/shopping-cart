@@ -4,6 +4,7 @@ import PageHeader from "../common/PageHeader.component";
 import SideFilter from "./SideFilter.component";
 import Sorter from "./Sorter.component";
 import ListingComponent from "../common/listing-component";
+import Checkout from "./Checkout.component";
 const { Content } = Layout;
 
 class DesktopShoppingCart extends React.Component {
@@ -13,21 +14,29 @@ class DesktopShoppingCart extends React.Component {
       items: this.props.items,
       cartItems: [],
       cartValue: 0,
-      sortState: null
+      filterRange: [1000, 100000],
+      sortState: null,
+      searchText: "",
+      onCheckoutPage: false
     };
   }
 
   handlePriceFilter = range => {
+    if (!range) {
+      range = this.state.filterRange;
+    }
     let items = [...this.props.items];
     let filteredItems = items.filter(
       item => item.price.actual >= range[0] && item.price.actual <= range[1]
     );
     this.setState(
       {
-        items: filteredItems
+        items: filteredItems,
+        filterRange: range
       },
       () => {
         this.handleSorter();
+        this.onSearchInputChangeHandler();
       }
     );
     console.log("filter", range);
@@ -97,20 +106,68 @@ class DesktopShoppingCart extends React.Component {
     });
   };
 
+  onSearchInputChangeHandler = value => {
+    if (!value) {
+      value = this.state.searchText;
+    }
+    let range = this.state.filterRange;
+    let items = [...this.props.items];
+    let priceFilterAppliedItems = items.filter(
+      item => item.price.actual >= range[0] && item.price.actual <= range[1]
+    );
+    let filteredItems = priceFilterAppliedItems.filter(item =>
+      item.name.toLowerCase().includes(value.toLowerCase())
+    );
+    this.setState(
+      {
+        items: filteredItems,
+        searchText: value
+      },
+      () => {
+        this.handleSorter();
+      }
+    );
+  };
+
+  cartCheckoutPageHandler = () => {
+    console.log(this.state.cartItems);
+    let cartItems = [...this.state.cartItems];
+    if (cartItems.length > 0) {
+      this.setState({
+        onCheckoutPage: true
+      });
+    }
+  };
+
   render() {
-    const { items, cartValue } = this.state;
+    const { items, cartValue, onCheckoutPage } = this.state;
     return (
       <>
         <Layout>
-          <PageHeader cartValue={cartValue} />
+          <PageHeader
+            cartValue={cartValue}
+            onChangeHandler={this.onSearchInputChangeHandler}
+            showSearch={!onCheckoutPage}
+            cartCheckoutPageHandler={this.cartCheckoutPageHandler}
+          />
           <Layout style={{ height: "100vh", background: "#f1f3f6" }}>
-            <SideFilter filterHandler={this.handlePriceFilter} />
-            <Content style={{ paddingTop: "80px" }}>
-              <Sorter handleSorter={this.handleSorter} />
-              <ListingComponent
-                items={items}
-                addToCart={this.addToCartHandler}
+            {!onCheckoutPage && (
+              <SideFilter
+                range={this.state.filterRange}
+                filterHandler={this.handlePriceFilter}
               />
+            )}
+            <Content style={{ paddingTop: "80px" }}>
+              {!onCheckoutPage && (
+                <>
+                  <Sorter handleSorter={this.handleSorter} />
+                  <ListingComponent
+                    items={items}
+                    addToCart={this.addToCartHandler}
+                  />
+                  {onCheckoutPage && <Checkout />}
+                </>
+              )}
             </Content>
           </Layout>
           {/* <Footer>Footer</Footer> */}

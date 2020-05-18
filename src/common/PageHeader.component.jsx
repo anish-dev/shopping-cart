@@ -7,6 +7,9 @@ import Cart from "./Cart.component";
 const { Header } = Layout;
 
 class PageHeader extends React.Component {
+  cartCheckoutHandler = () => {
+    this.props.cartCheckoutPageHandler();
+  };
   render() {
     const { cartValue } = this.props;
     return (
@@ -27,9 +30,11 @@ class PageHeader extends React.Component {
             <Col>
               <Row style={{ marginRight: "20px" }}>
                 <Col style={{ marginRight: "12px" }}>
-                  <Search />
+                  {this.props.showSearch && (
+                    <Search onChangeHandler={this.props.onChangeHandler} />
+                  )}
                 </Col>
-                <Col>
+                <Col onClick={this.cartCheckoutHandler}>
                   <Cart cartValue={cartValue} />
                 </Col>
               </Row>

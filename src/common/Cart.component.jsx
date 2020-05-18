@@ -6,7 +6,9 @@ const Cart = props => {
   return (
     <>
       <Badge count={props.cartValue}>
-        <ShoppingCartOutlined style={{ fontSize: "24px", color: "#fff" }} />
+        <ShoppingCartOutlined
+          style={{ fontSize: "24px", color: "#fff", cursor: "pointer" }}
+        />
       </Badge>
     </>
   );
