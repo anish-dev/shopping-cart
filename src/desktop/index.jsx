@@ -139,8 +139,55 @@ class DesktopShoppingCart extends React.Component {
     }
   };
 
+  backToMainPage = () => {
+    console.log("inside back function");
+    this.setState({
+      onCheckoutPage: false
+    });
+  };
+
+  removeItem = (item, count) => {
+    let { cartItems, cartValue } = this.state;
+    for (let i = 0; i < cartItems.length; i++) {
+      if (cartItems[i].item.name === item.name) {
+        cartValue = cartValue - count;
+        cartItems.splice(i, 1);
+        break;
+      }
+    }
+    this.setState({
+      cartValue,
+      cartItems
+    });
+  };
+
+  updateItemCount = (type, item) => {
+    let { cartItems, cartValue } = this.state;
+    let indexOfitem = null;
+    for (let i = 0; i < cartItems.length; i++) {
+      if (cartItems[i].item.name === item.name) {
+        indexOfitem = i;
+        break;
+      }
+    }
+    if (type === "subtract") {
+      cartItems[indexOfitem].count -= 1;
+      cartValue -= 1;
+      if (cartItems[indexOfitem].count === 0) {
+        cartItems.splice(indexOfitem, 1);
+      }
+    } else if (type === "add") {
+      cartItems[indexOfitem].count += 1;
+      cartValue += 1;
+    }
+    this.setState({
+      cartValue,
+      cartItems
+    });
+  };
+
   render() {
-    const { items, cartValue, onCheckoutPage } = this.state;
+    const { items, cartValue, onCheckoutPage, cartItems } = this.state;
     return (
       <>
         <Layout>
@@ -165,8 +212,15 @@ class DesktopShoppingCart extends React.Component {
                     items={items}
                     addToCart={this.addToCartHandler}
                   />
-                  {onCheckoutPage && <Checkout />}
                 </>
+              )}
+              {onCheckoutPage && (
+                <Checkout
+                  updateItemCount={this.updateItemCount}
+                  removeItem={this.removeItem}
+                  backToMainPage={this.backToMainPage}
+                  cartItems={cartItems}
+                />
               )}
             </Content>
           </Layout>
