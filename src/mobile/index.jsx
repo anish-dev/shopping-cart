@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Row, Col, Layout, message, Modal } from "antd";
+import { Row, Col, Layout, message } from "antd";
 import PageHeader from "./PageHeader.component";
 import Filter from "./Filter.component";
 import Sorter from "./Sorter.component";

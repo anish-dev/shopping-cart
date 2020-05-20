@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Row, Col, Modal, Radio, Input } from "antd";
+import { Modal, Radio } from "antd";
 
 class Sorter extends React.Component {
   constructor(props) {
@@ -78,13 +78,6 @@ class Sorter extends React.Component {
     );
   }
 }
-
-// const sortStyle = {
-//   color: "#919191",
-//   fontSiz: "14px",
-//   fontWeight: 700,
-//   cursor: "pointer"
-// };
 
 const radioStyle = {
   display: "block",

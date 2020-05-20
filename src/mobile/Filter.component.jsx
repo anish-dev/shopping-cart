@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Row, Col, Slider, Button, Modal } from "antd";
+import { Row, Col, Slider, Modal } from "antd";
 
 // const { Sider } = Layout;
 
