@@ -33,11 +33,11 @@ class Main extends React.Component {
   }
 
   handleWindowSizeChange = () => {
-    if (window.innerWidth <= 500) {
-      window.location.reload();
-    } else {
-      this.setState({ width: window.innerWidth });
-    }
+    // if (window.innerWidth <= 500) {
+    //   window.location.reload();
+    // } else {
+    this.setState({ width: window.innerWidth });
+    // }
   };
 
   render() {
