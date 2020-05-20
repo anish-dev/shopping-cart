@@ -15,8 +15,9 @@ class Checkout extends React.Component {
     for (let i = 0; i < items.length; i++) {
       let item = items[i];
       itemCount += item.count;
-      totalPrice += item.item.price.display;
-      totalDiscount += item.item.price.display - item.item.price.actual;
+      totalPrice += item.item.price.display * item.count;
+      totalDiscount +=
+        (item.item.price.display - item.item.price.actual) * item.count;
     }
     let total = totalPrice - totalDiscount;
     let countResult = itemCount + " " + (itemCount > 1 ? "items" : "item");
