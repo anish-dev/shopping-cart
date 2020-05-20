@@ -46,9 +46,9 @@ class Main extends React.Component {
     if (data) {
       if (isMobile) {
         return (
-          <>
-            <MobileShoppingCart />
-          </>
+          <div style={{ background: "#f1f3f6" }}>
+            <MobileShoppingCart items={data.items} />
+          </div>
         );
       } else {
         return (

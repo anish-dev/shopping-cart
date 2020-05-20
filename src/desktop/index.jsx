@@ -1,9 +1,9 @@
 import * as React from "react";
 import { Layout, message } from "antd";
-import PageHeader from "../common/PageHeader.component";
+import PageHeader from "./PageHeader.component";
 import SideFilter from "./SideFilter.component";
 import Sorter from "./Sorter.component";
-import ListingComponent from "../common/listing-component";
+import ListingComponent from "./listing-component";
 import Checkout from "./Checkout.component";
 const { Content } = Layout;
 

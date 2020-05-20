@@ -47,8 +47,8 @@ class Checkout extends React.Component {
             {"<"}Back
           </Col>
         </Row>
-        <Row style={{ background: "#f1f3f6" }}>
-          <Col span={10} offset={3}>
+        <Row style={{ background: "#f1f3f6" }} justify="space-around">
+          <Col span={20}>
             {cartItems.map(item => {
               const count = item.count;
               item = item.item;
@@ -62,10 +62,10 @@ class Checkout extends React.Component {
                     border: "1px solid #a5a5a5"
                   }}
                 >
-                  <Col span={5}>
+                  <Col span={8}>
                     <img src={item.image} alt="" style={{ height: "130px" }} />
                   </Col>
-                  <Col style={{ marginTop: "10px" }}>
+                  <Col xs={14} style={{ marginTop: "10px" }}>
                     <Row style={{ marginBottom: "10px" }}>
                       <Col>{item.name}</Col>
                     </Row>
@@ -99,41 +99,45 @@ class Checkout extends React.Component {
                         </span>
                       </Col>
                     </Row>
-                  </Col>
-                  <Col span={5} offset={1}>
-                    <Row>
-                      <Col
-                        onClick={() =>
-                          this.props.updateItemCount("subtract", item)
-                        }
-                        style={styles.counterSign}
-                      >
-                        -
-                      </Col>
-                      <Col style={styles.count}>{count}</Col>
-                      <Col
-                        onClick={() => this.props.updateItemCount("add", item)}
-                        style={styles.counterSign}
-                      >
-                        +
+                    <Row style={{ marginTop: "10px" }}>
+                      <Col offset={1}>
+                        <Row>
+                          <Col
+                            onClick={() =>
+                              this.props.updateItemCount("subtract", item)
+                            }
+                            style={styles.counterSign}
+                          >
+                            -
+                          </Col>
+                          <Col style={styles.count}>{count}</Col>
+                          <Col
+                            onClick={() =>
+                              this.props.updateItemCount("add", item)
+                            }
+                            style={styles.counterSign}
+                          >
+                            +
+                          </Col>
+                        </Row>
                       </Col>
                     </Row>
-                  </Col>
-                  <Col
-                    style={{ fontWeight: 700, cursor: "pointer" }}
-                    span={3}
-                    offset={2}
-                    onClick={() => this.props.removeItem(item, count)}
-                  >
-                    Remove
+                    <Row style={{ marginTop: "10px" }}>
+                      <Col
+                        style={{ fontWeight: 700, cursor: "pointer" }}
+                        offset={1}
+                        onClick={() => this.props.removeItem(item, count)}
+                      >
+                        Remove
+                      </Col>
+                    </Row>
                   </Col>
                 </Row>
               );
             })}
           </Col>
           <Col
-            span={4}
-            offset={1}
+            span={20}
             style={{
               background: "#fff",
               border: "1px solid #a5a5a5",
