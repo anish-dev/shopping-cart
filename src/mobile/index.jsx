@@ -239,35 +239,37 @@ class MobileShoppingCart extends React.Component {
                 filterHandler={this.handlePriceFilter}
               />
             )}
-            <Row style={{ marginTop: "85px" }} justify="space-between">
-              <Col xs={10} offset={1}>
-                <Row>
-                  <Col>
-                    <CaretUpOutlined />
-                    <CaretDownOutlined />
-                  </Col>
-                  <Col
-                    onClick={this.openSorterModal}
-                    style={{ fontWeight: 600 }}
-                  >
-                    Sort
-                  </Col>
-                </Row>
-              </Col>
-              <Col xs={6}>
-                <Row>
-                  <Col>
-                    <FilterFilled />
-                  </Col>
-                  <Col
-                    style={{ fontWeight: 600 }}
-                    onClick={this.openFilterModal}
-                  >
-                    Filter
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
+            {!onCheckoutPage && (
+              <Row style={{ marginTop: "85px" }} justify="space-between">
+                <Col xs={10} offset={1}>
+                  <Row>
+                    <Col>
+                      <CaretUpOutlined />
+                      <CaretDownOutlined />
+                    </Col>
+                    <Col
+                      onClick={this.openSorterModal}
+                      style={{ fontWeight: 600 }}
+                    >
+                      Sort
+                    </Col>
+                  </Row>
+                </Col>
+                <Col xs={6}>
+                  <Row>
+                    <Col>
+                      <FilterFilled />
+                    </Col>
+                    <Col
+                      style={{ fontWeight: 600 }}
+                      onClick={this.openFilterModal}
+                    >
+                      Filter
+                    </Col>
+                  </Row>
+                </Col>
+              </Row>
+            )}
 
             <Content style={{ paddingTop: "15px" }}>
               {!onCheckoutPage && (

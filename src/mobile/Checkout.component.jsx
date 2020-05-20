@@ -15,8 +15,9 @@ class Checkout extends React.Component {
     for (let i = 0; i < items.length; i++) {
       let item = items[i];
       itemCount += item.count;
-      totalPrice += item.item.price.display;
-      totalDiscount += item.item.price.display - item.item.price.actual;
+      totalPrice += item.item.price.display * item.count;
+      totalDiscount +=
+        (item.item.price.display - item.item.price.actual) * item.count;
     }
     let total = totalPrice - totalDiscount;
     let countResult = itemCount + " " + (itemCount > 1 ? "items" : "item");
@@ -41,13 +42,21 @@ class Checkout extends React.Component {
           <Col
             span={4}
             offset={2}
-            style={{ fontSize: "16px", fontWeight: 600, cursor: "pointer" }}
+            style={{
+              fontSize: "16px",
+              fontWeight: 600,
+              cursor: "pointer",
+              paddingTop: "80px"
+            }}
             onClick={this.props.backToMainPage}
           >
             {"<"}Back
           </Col>
         </Row>
-        <Row style={{ background: "#f1f3f6" }} justify="space-around">
+        <Row
+          style={{ background: "#f1f3f6", paddingTop: "80px" }}
+          justify="space-around"
+        >
           <Col span={20}>
             {cartItems.map(item => {
               const count = item.count;
@@ -141,7 +150,8 @@ class Checkout extends React.Component {
             style={{
               background: "#fff",
               border: "1px solid #a5a5a5",
-              height: "196px"
+              height: "196px",
+              marginBottom: "10px"
             }}
           >
             <Row style={styles.priceDetailsTitle}>
